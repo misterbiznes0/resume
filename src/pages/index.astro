@@ -2,8 +2,8 @@
 const name = "Никита";
 
 const skills = [
-  "HTML", "CSS", "JavaScript", "PHP", "Laravel",
-  "Python", "Django", "SQLite", "Twee", "GitHub"
+  "HTML", "CSS", "JavaScript", "PHP", "Laravel", "Python", "Django",
+  "SQLite", "Twee", "Google Colab", "GitHub", 
 ];
 
 const projects = [
@@ -97,6 +97,21 @@ const projects = [
   }
 ];
 
+const aiProjects = [
+  {
+    title: "Обучение нейронной сети на первом датасете",
+    link: "https://colab.research.google.com/drive/1lGUqfK-bfgq4GUZwxD1K5ZJ-K6IquU3c?usp=sharing",
+    tech: ["Python", "Google Colab"],
+    text: "Учебный проект по обучению нейронной сети для анализа тональности текстовых отзывов. Модель научилась определять, является отзыв положительным или отрицательным."
+  },
+  {
+    title: "Обучение нейронной сети на втором датасете",
+    link: "https://colab.research.google.com/drive/1ixjqJIkoEM9NLNrzKLDdN-JfCWHTD5aM?usp=sharing",
+    tech: ["Python", "Google Colab"],
+    text: "Практический проект по обучению более точной модели нейронной сети для определения позитивных и негативных отзывов на втором датасете."
+  }
+];
+
 const certificates = [
   ["VR-разработка", "Startexam", "2026", "https://drive.google.com/file/d/17ebgScIuU8ImN5ga83Oe6Lwac8IgDrV3/view"],
   ["Олимпиада по искусственному интеллекту", "Не указана", "2025", "https://drive.google.com/file/d/1CIEmiqlpktIfleHblEpeqBcpL_AJ077V/view"],
@@ -107,7 +122,12 @@ const certificates = [
   ["VR-разработка", "Траектория будущего", "2026", "https://drive.google.com/file/d/1aYfQwaAi9YnZmIZPvYhGx_1o8f7FrE_b/view"],
   ["Офицер безопасности", "Траектория будущего", "2026", "https://drive.google.com/file/d/1QNthPI3Ky_iRilqilw7Y_jNFv2-U7g5L/view"],
   ["Нейросетевое искусство", "Траектория будущего", "2026", "https://drive.google.com/file/d/15q69q6U2e2BvRDrlrGiuJ5P2imGBsDWA/view"],
-  ["ИТ-диктант", "ИТ-диктант", "2025", "https://drive.google.com/file/d/1ly7YMTmtRW1-kp3FVUrDtWL4xFH_qjDb/view"]
+  ["ИТ-диктант", "ИТ-диктант", "2025", "https://drive.google.com/file/d/1ly7YMTmtRW1-kp3FVUrDtWL4xFH_qjDb/view"],
+  ["Администрирование РЕД ОС", "IT Планета", "2026", "https://drive.google.com/file/d/1vjEoRiu3FkIoxbb8r5Z6rMefuN_TlSM_/view"],
+  ["Мастерство промптов: работа с текстом", "IT Планета", "2026", "https://drive.google.com/file/d/18XXDzskGMcb6zCD4CL9VxkiXmbLmKa_F/view"],
+  ["Мастерство промптов: работа с изображениями", "IT Планета", "2026", "https://drive.google.com/file/d/1rSP-v4r4eXePIWxJRNlI9gjssnVdLPnA/view"],
+  ["Информационная безопасность", "IT Планета", "2026", "https://drive.google.com/file/d/1b4EWk3507UTDu-q7AmMbKdMzRUWAwi7Z/view"],
+  ["1С: Пропуск", "1С", "2026", "https://drive.google.com/file/d/1KcRwIiH3196eW2-wMqbZpHSJw57FMK2o/view"]
 ];
 ---
 
@@ -119,6 +139,7 @@ const certificates = [
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
 
     body {
@@ -173,7 +194,7 @@ const certificates = [
     nav a {
       color: #cbd5e1;
       text-decoration: none;
-      margin-left: 20px;
+      margin-left: 16px;
       font-size: 15px;
     }
 
@@ -275,15 +296,7 @@ const certificates = [
       transition: .3s;
     }
 
-    .contact-card:hover {
-      transform: translateY(-5px);
-      border-color: #38bdf8;
-      box-shadow: 0 0 30px rgba(56,189,248,.18);
-    }
-
-    .emoji {
-      font-size: 34px;
-    }
+    .emoji { font-size: 34px; }
 
     .contact-card div {
       display: flex;
@@ -311,6 +324,7 @@ const certificates = [
       background: rgba(30,41,59,.85);
       border: 1px solid rgba(96,165,250,.25);
       font-weight: 700;
+      transition: .3s;
     }
 
     .tabs {
@@ -346,8 +360,8 @@ const certificates = [
       transition: .3s;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
+    .card:hover, .contact-card:hover, .skill:hover {
+      transform: translateY(-5px);
       border-color: #38bdf8;
       box-shadow: 0 0 30px rgba(56,189,248,.18);
     }
@@ -422,7 +436,8 @@ const certificates = [
       }
 
       nav a {
-        margin: 0 7px;
+        margin: 0 7px 8px;
+        display: inline-block;
       }
 
       .hero {
@@ -446,6 +461,7 @@ const certificates = [
         <a href="#contacts">Контакты</a>
         <a href="#skills">Навыки</a>
         <a href="#projects">Проекты</a>
+        <a href="#ai">Google Colab</a>
         <a href="#certificates">Сертификаты</a>
       </nav>
     </header>
@@ -453,12 +469,11 @@ const certificates = [
     <main>
       <section class="hero">
         <div>
-          <span class="badge">Учусь на веб-разработчика</span>
           <h1>{name}</h1>
           <p>
-            Я изучаю веб-разработку и создаю сайты, интерактивные проекты
-            и веб-приложения. Работаю с HTML, CSS, JavaScript, PHP, Laravel,
-            Python, Django и базами данных.
+            Я изучаю веб-разработку и создаю сайты, интерактивные проекты,
+            веб-приложения и AI-проекты в Google Colab. Работаю с HTML, CSS,
+            JavaScript, PHP, Laravel, Python, Django и базами данных.
           </p>
         </div>
       </section>
@@ -467,12 +482,13 @@ const certificates = [
         <h2>Обо мне</h2>
         <p class="about-text">
           Сейчас я учусь на веб-разработчика и развиваюсь как frontend и backend-разработчик.
-          За время обучения я создал несколько учебных сайтов, интерактивных новелл,
-          веб-приложений на Laravel и Django, а также проекты для производственной практики.
+          За время обучения я создал учебные сайты, интерактивные новеллы, веб-приложения
+          на Laravel и Django, а также проекты по обучению нейронных сетей в Google Colab.
         </p>
 
         <div class="stats">
-          <div class="stat"><strong>{projects.length}</strong>проектов</div>
+          <div class="stat"><strong>{projects.length}</strong>веб-проектов</div>
+          <div class="stat"><strong>{aiProjects.length}</strong>AI-проекта</div>
           <div class="stat"><strong>{certificates.length}</strong>сертификатов</div>
           <div class="stat"><strong>2+</strong>года обучения</div>
         </div>
@@ -480,7 +496,6 @@ const certificates = [
 
       <section id="contacts">
         <h2>Контакты</h2>
-
         <div class="contacts">
           <a href="mailto:nnaumov2394@gmail.com" class="contact-card">
             <span class="emoji">📧</span>
@@ -531,6 +546,28 @@ const certificates = [
               <div class="buttons">
                 <a class="btn" href={project.site} target="_blank">Открыть сайт</a>
                 <a class="btn secondary" href={project.github} target="_blank">GitHub</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="ai">
+        <h2>Google Colab / AI-проекты</h2>
+
+        <div class="grid">
+          {aiProjects.map(project => (
+            <article class="card">
+              <div class="type">Google Colab</div>
+              <h3>{project.title}</h3>
+              <p>{project.text}</p>
+
+              <div class="tech">
+                {project.tech.map(item => <span>{item}</span>)}
+              </div>
+
+              <div class="buttons">
+                <a class="btn" href={project.link} target="_blank">Открыть Colab</a>
               </div>
             </article>
           ))}
